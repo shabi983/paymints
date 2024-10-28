@@ -111,58 +111,5 @@
         });
     }
 
-
-
-     // Set limit and 24-hour expiration time in milliseconds
-    const clickLimit = 5;
-    const oneDay = 24 * 60 * 60 * 1000;
     
-    // Get current time
-    const now = new Date().getTime();
-    
-    // Retrieve click count and last click time from localStorage
-    let clickData = JSON.parse(localStorage.getItem("clickData")) || { count: 0, lastClickTime: 0 };
-    
-    // Check if 24 hours have passed since the last reset
-    if (now - clickData.lastClickTime > oneDay) {
-      clickData = { count: 0, lastClickTime: now };  // Reset counter and time
-      localStorage.setItem("clickData", JSON.stringify(clickData));
-    }
-    
-    // Function to handle button click
-    function handleClick() {
-      if (clickData.count < clickLimit) {
-        clickData.count++;
-        clickData.lastClickTime = now;
-        localStorage.setItem("clickData", JSON.stringify(clickData));
-        document.getElementById("invoice983").style.display = "block"; // Show div
-      } else {
-        // Show overlay message if limit is reached
-        showOverlay();
-      }
-    }
-    
-    // Function to show overlay
-    function showOverlay() {
-      document.getElementById("overlay").style.display = "flex";
-    }
 
-    // Redirect to another page for upgrade
-    function redirectToUpgrade() {
-      window.location.href = "#"; // Replace with your actual upgrade page URL
-    }
-  
-   // Redirect to another page for home
-    function redirectToHome() {
-      window.location.href = "https://paymints.blogspot.com"; // Replace with your actual home page URL
-    }
-
-    // Add click event listener to button
-    document.getElementById("download-pdf983").addEventListener("click", handleClick);
-
-    // Check initial load if limit is already reached
-    if (clickData.count >= clickLimit) {
-      showOverlay();
-    } else {
-      document.getElementById("invoice983").style.display = "block";
-    }
