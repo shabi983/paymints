@@ -62,7 +62,7 @@ function downloadCSV(csvData) {
     const url = URL.createObjectURL(blob);
     
     link.setAttribute("href", url);
-    link.setAttribute("download", "converted.csv");
+    link.setAttribute("download", "convertedbypaymints.csv");
     link.style.display = "block"; // Show the download link
     link.innerText = "Download CSV";
 }
